@@ -7,10 +7,16 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f9;
+    background-color: #F7F7F7; /* Light Gray */
     display: flex;
     height: 100vh;
     overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-theme {
+    background-color: #333;
+    color: #fff;
 }
 
 .wrapper {
@@ -19,13 +25,27 @@ body {
 }
 
 .sidebar {
-    background-color: #343a40;
+    background-color: #007BFF; /* Electric Blue */
     min-width: 200px;
     max-width: 200px;
     min-height: 100vh;
-    color: #fff;
+    color: #FFFFFF; /* White */
     padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: all 0.3s;
+}
+
+.sidebar.dark-theme {
+    background-color: #222;
+}
+
+.sidebar img.logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Adjust the height as needed, or use a fixed value */
 }
 
 .sidebar ul {
@@ -38,7 +58,7 @@ body {
 }
 
 .sidebar ul li a {
-    color: #ddd;
+    color: #DDDDDD; /* Light Gray */
     text-decoration: none;
     display: block;
     width: 100%;
@@ -48,63 +68,73 @@ body {
 }
 
 .sidebar ul li a:hover {
-    background-color: #495057;
-    color: #fff;
+    background-color: #0056b3; /* Slightly darker shade of Electric Blue */
+    color: #FFFFFF; /* White */
     transform: translateY(-3px);
+}
+
+.sidebar.dark-theme a {
+    color: #ddd;
+}
+
+.sidebar.dark-theme a:hover {
+    background-color: #555;
+}
+
+.theme-toggle {
+    text-align: center;
+    margin-top: auto;
+}
+
+.theme-toggle a {
+    color: #FFFFFF; /* White */
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.theme-toggle a:hover {
+    color: #FFD700; /* Gold */
 }
 
 .content {
     flex-grow: 1;
-    padding: 40px;
+    padding: 20px; /* Reduced padding for a cleaner look */
     overflow-y: auto;
-    background-color: #ffffff;
+    background-color: #FFFFFF; /* White */
     border-radius: 8px;
     margin: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
 }
 
-.toolbar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.toolbar button, .toolbar select {
-    padding: 10px;
-    border: none;
-    background-color: #495057;
+.content.dark-theme {
+    background-color: #444;
     color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.toolbar button:hover, .toolbar select:hover {
-    background-color: #343a40;
-}
-
-.content h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #343a40;
 }
 
 textarea {
     width: 100%;
     height: 80vh;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: none; /* Remove border */
+    border-radius: 0; /* Remove border-radius */
     font-size: 16px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: transparent; /* Remove background color for cleaner look */
+    box-shadow: none; /* Remove box-shadow */
+    resize: none; /* Prevent resizing */
     transition: all 0.3s;
 }
 
+textarea.dark-theme {
+    background-color: #555;
+    color: #fff;
+    border: none; /* Ensure no border in dark theme */
+}
+
 textarea:focus {
-    border-color: #495057;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
-    outline: none;
+    border: none; /* Ensure no border on focus */
+    box-shadow: none; /* Ensure no box-shadow on focus */
+    outline: none; /* Remove outline on focus */
 }
 
 .mobile-buttons {
@@ -120,7 +150,7 @@ textarea:focus {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    background-color: #343a40;
+    background-color: #343A40; /* Darker Gray */
     position: absolute;
     top: 0;
     width: 100%;
@@ -130,15 +160,15 @@ textarea:focus {
 .mobile-toolbar button, .mobile-toolbar select {
     padding: 10px;
     border: none;
-    background-color: #495057;
-    color: #fff;
+    background-color: #FFEA00; /* Bright Yellow */
+    color: #FFFFFF; /* White */
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
 
 .mobile-toolbar button:hover, .mobile-toolbar select:hover {
-    background-color: #343a40;
+    background-color: #d4bf00; /* Darker shade of Bright Yellow */
 }
 
 /* Responsive Design */
@@ -159,21 +189,21 @@ textarea:focus {
     }
 
     textarea {
-        height: 60vh;
+        height: 80vh;
     }
 
     .mobile-buttons {
         display: flex;
         justify-content: space-around;
         padding: 10px 0;
-        background-color: #343a40;
+        background-color: #343A40; /* Darker Gray */
         position: fixed;
         bottom: 0;
         width: 100%;
     }
 
     .mobile-buttons a {
-        color: #ddd;
+        color: #DDDDDD; /* Light Gray */
         font-size: 24px;
     }
 
@@ -181,7 +211,7 @@ textarea:focus {
         display: flex;
         justify-content: center;
         padding: 10px 0;
-        background-color: #495057;
+        background-color: #0056b3; /* Slightly darker shade of Electric Blue */
     }
 
     .mobile-toolbar {
