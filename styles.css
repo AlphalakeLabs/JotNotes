@@ -150,7 +150,7 @@ textarea:focus {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    background-color: #343A40; /* Darker Gray */
+    background-color: #007BFF; /* Same as sidebar for consistency */
     position: absolute;
     top: 0;
     width: 100%;
@@ -196,7 +196,7 @@ textarea:focus {
         display: flex;
         justify-content: space-around;
         padding: 10px 0;
-        background-color: #343A40; /* Darker Gray */
+        background-color: #007BFF; /* Same as sidebar for consistency */
         position: fixed;
         bottom: 0;
         width: 100%;
