@@ -28,13 +28,6 @@ body {
     transition: all 0.3s;
 }
 
-.sidebar-header {
-    padding: 20px;
-    text-align: center;
-    background-color: #495057;
-    border-radius: 8px;
-}
-
 .sidebar ul {
     list-style: none;
 }
@@ -71,6 +64,26 @@ body {
     transition: all 0.3s;
 }
 
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.toolbar button, .toolbar select {
+    padding: 10px;
+    border: none;
+    background-color: #495057;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.toolbar button:hover, .toolbar select:hover {
+    background-color: #343a40;
+}
+
 .content h2 {
     margin-bottom: 20px;
     font-size: 24px;
@@ -92,6 +105,88 @@ textarea:focus {
     border-color: #495057;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
     outline: none;
+}
+
+.mobile-buttons {
+    display: none;
+}
+
+.mobile-toolbar-toggle {
+    display: none;
+}
+
+.mobile-toolbar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #343a40;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.mobile-toolbar button, .mobile-toolbar select {
+    padding: 10px;
+    border: none;
+    background-color: #495057;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.mobile-toolbar button:hover, .mobile-toolbar select:hover {
+    background-color: #343a40;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* Hide the sidebar on mobile */
+    }
+
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .content {
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    textarea {
+        height: 60vh;
+    }
+
+    .mobile-buttons {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        background-color: #343a40;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .mobile-buttons a {
+        color: #ddd;
+        font-size: 24px;
+    }
+
+    .mobile-toolbar-toggle {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        background-color: #495057;
+    }
+
+    .mobile-toolbar {
+        display: flex;
+    }
 }
 
 /* Hide other elements during printing */
