@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const clearButton = document.getElementById('clearButton');
     const printButton = document.getElementById('printButton');
     const downloadButton = document.getElementById('downloadButton');
+    const themeToggleButton = document.getElementById('theme-toggle');
 
     // Load the saved note from localStorage
     if (localStorage.getItem('note')) {
@@ -35,5 +36,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const doc = new jsPDF();
         doc.text(note.value, 10, 10);
         doc.save('note.pdf');
+    });
+
+    // Toggle dark theme
+    themeToggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        document.querySelector('.sidebar').classList.toggle('dark-theme');
+        document.querySelector('.content').classList.toggle('dark-theme');
+        document.querySelector('textarea').classList.toggle('dark-theme');
     });
 });
