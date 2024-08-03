@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Pad</title>
+    <title>NoteNook</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="wrapper">
         <nav class="sidebar">
+            <img src="logo.png" alt="Logo" class="logo">
             <ul class="list-unstyled components">
                 <li>
                     <a href="#" id="clearButton">Clear Note</a>
@@ -21,9 +23,11 @@
                     <a href="#" id="downloadButton">Download as PDF</a>
                 </li>
             </ul>
+            <div class="theme-toggle">
+                <a href="#" id="theme-toggle"><i class="fas fa-moon"></i></a>
+            </div>
         </nav>
         <div class="content">
-            <h2>Jot Notes</h2>
             <textarea id="note" placeholder="Write your notes here..."></textarea>
         </div>
         <div class="mobile-buttons">
