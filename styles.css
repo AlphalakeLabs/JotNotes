@@ -25,7 +25,7 @@ body.dark-theme {
 }
 
 .sidebar {
-    background-color: #007BFF; /* Electric Blue */
+    background-color: #5679BF; /* Darker shade of your logo color */
     min-width: 200px;
     max-width: 200px;
     min-height: 100vh;
@@ -68,7 +68,7 @@ body.dark-theme {
 }
 
 .sidebar ul li a:hover {
-    background-color: #0056b3; /* Slightly darker shade of Electric Blue */
+    background-color: #45619F; /* Even darker shade for hover effect */
     color: #FFFFFF; /* White */
     transform: translateY(-3px);
 }
@@ -150,7 +150,7 @@ textarea:focus {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    background-color: #007BFF; /* Same as sidebar for consistency */
+    background-color: #5679BF; /* Same as sidebar for consistency */
     position: absolute;
     top: 0;
     width: 100%;
@@ -196,7 +196,7 @@ textarea:focus {
         display: flex;
         justify-content: space-around;
         padding: 10px 0;
-        background-color: #007BFF; /* Same as sidebar for consistency */
+        background-color: #5679BF; /* Same as sidebar for consistency */
         position: fixed;
         bottom: 0;
         width: 100%;
@@ -211,7 +211,7 @@ textarea:focus {
         display: flex;
         justify-content: center;
         padding: 10px 0;
-        background-color: #0056b3; /* Slightly darker shade of Electric Blue */
+        background-color: #45619F; /* Slightly darker shade of sidebar color */
     }
 
     .mobile-toolbar {
