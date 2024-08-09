@@ -25,7 +25,7 @@ body.dark-theme {
 }
 
 .sidebar {
-    background-color: #5679BF; /* Darker shade of your logo color */
+    background-color: #007BFF; /* Electric Blue */
     min-width: 200px;
     max-width: 200px;
     min-height: 100vh;
@@ -68,7 +68,7 @@ body.dark-theme {
 }
 
 .sidebar ul li a:hover {
-    background-color: #45619F; /* Even darker shade for hover effect */
+    background-color: #0056b3; /* Slightly darker shade of Electric Blue */
     color: #FFFFFF; /* White */
     transform: translateY(-3px);
 }
@@ -107,7 +107,7 @@ body.dark-theme {
     transition: all 0.3s;
 }
 
-content.dark-theme {
+.content.dark-theme {
     background-color: #444;
     color: #fff;
 }
@@ -150,14 +150,15 @@ textarea:focus {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    background-color: #5679BF; /* Same as sidebar for consistency */
+    background-color: #007BFF; /* Same as sidebar for consistency */
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 10;
 }
 
-.mobile-toolbar button, .mobile-toolbar select {
+.mobile-toolbar button, 
+.mobile-toolbar select {
     padding: 10px;
     border: none;
     background-color: #FFEA00; /* Bright Yellow */
@@ -167,7 +168,8 @@ textarea:focus {
     font-size: 16px;
 }
 
-.mobile-toolbar button:hover, .mobile-toolbar select:hover {
+.mobile-toolbar button:hover, 
+.mobile-toolbar select:hover {
     background-color: #d4bf00; /* Darker shade of Bright Yellow */
 }
 
@@ -196,7 +198,7 @@ textarea:focus {
         display: flex;
         justify-content: space-around;
         padding: 10px 0;
-        background-color: #5679BF; /* Same as sidebar for consistency */
+        background-color: #007BFF; /* Same as sidebar for consistency */
         position: fixed;
         bottom: 0;
         width: 100%;
@@ -211,7 +213,7 @@ textarea:focus {
         display: flex;
         justify-content: center;
         padding: 10px 0;
-        background-color: #45619F; /* Slightly darker shade of sidebar color */
+        background-color: #0056b3; /* Slightly darker shade of Electric Blue */
     }
 
     .mobile-toolbar {
@@ -224,7 +226,8 @@ textarea:focus {
     body * {
         visibility: hidden;
     }
-    .content, .content * {
+    .content, 
+    .content * {
         visibility: visible;
     }
     .content {
