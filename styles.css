@@ -107,7 +107,7 @@ body.dark-theme {
     transition: all 0.3s;
 }
 
-.content.dark-theme {
+content.dark-theme {
     background-color: #444;
     color: #fff;
 }
