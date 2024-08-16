@@ -102,7 +102,7 @@ body.dark-theme {
     overflow-y: auto;
     background-color: #FFFFFF; /* White */
     border-radius: 8px;
-    margin: 20px;
+    margin: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
 }
@@ -114,10 +114,10 @@ body.dark-theme {
 
 textarea {
     width: 100%;
-    height: 80vh;
+    height: 89vh;
     padding: 20px;
     border: none; /* Remove border */
-    border-radius: 0; /* Remove border-radius */
+    border-radius: 8px; /* Remove border-radius */
     font-size: 16px;
     background: transparent; /* Remove background color for cleaner look */
     box-shadow: none; /* Remove box-shadow */
@@ -238,3 +238,69 @@ textarea:focus {
         height: auto;
     }
 }
+
+/* Existing styles... */
+
+.sidebar-right {
+    position: fixed;
+    bottom: 0; /* Aligns the sidebar to the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-30%); /* Adjust for horizontal centering */
+    width: 470px; /* Set width to desired size */
+    height: 40px; /* Set height to desired size */
+    background-color: #007BFF; /* Same as sidebar for consistency */
+    color: #FFFFFF; /* White */
+    padding: 0px;
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 25px; /* Curve on the top-left corner */
+    border-top-right-radius: 25px; /* Curve on the top-right corner */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sidebar-right.dark-theme {
+    background-color: #2c2c2c; /* Dark theme color */
+    color: #FFFFFF; /* Dark theme text color */
+}
+
+
+.sidebar-right .social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Align icons horizontally */
+    align-items: center; /* Center icons vertically */
+}
+
+.sidebar-right .social-icons li {
+    margin: 0 10px; /* Horizontal spacing between icons */
+}
+
+.sidebar-right .social-icons a {
+    color: #FFFFFF; /* White */
+    font-size: 24px;
+    display: block;
+    width: 40px; /* Adjust width to match icon size */
+    height: 40px; /* Adjust height to match icon size */
+    text-align: center;
+    line-height: 40px; /* Center icon vertically */
+    border-radius: 10%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar-right .social-icons a:hover {
+    background-color: #0056b3; /* Slightly darker shade of Electric Blue */
+    transform: scale(1.1);
+}
+
+/* Responsive Design for sidebar-right */
+@media (max-width: 78px) {
+    .sidebar-right {
+        display: none; /* Hide the sidebar on mobile */
+    }
+}
+
