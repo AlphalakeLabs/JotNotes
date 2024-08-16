@@ -12,6 +12,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const downloadButtonMobile = document.getElementById('downloadButtonMobile');
     const deleteButtonMobile = document.getElementById('deleteButtonMobile');
 
+    const shareButtons = {
+        whatsapp: document.getElementById('whatsapp'),
+        reddit: document.getElementById('reddit'),
+        copy: document.getElementById('copy'),
+        messenger: document.getElementById('messenger'),
+        email: document.getElementById('email'),
+        sms: document.getElementById('sms'),
+        twitter: document.getElementById('twitter'),
+        telegram: document.getElementById('telegram')
+    };
+    
+    const text = document.getElementById('text'); // Assuming there's an element with id 'note' that contains the text to be shared.
+    
+    function shareToApp(baseURL) {
+        const text = encodeURIComponent(note.value.trim());
+        window.open(baseURL + text, '_blank');
+    }
+    
+    shareButtons.whatsapp.addEventListener('click', () => shareToApp('https://wa.me/?text='));
+    shareButtons.reddit.addEventListener('click', () => shareToApp('https://www.reddit.com/submit?url=&title='));
+    shareButtons.copy.addEventListener('click', () => {
+        navigator.clipboard.writeText(note.value.trim()).then(() => {
+            alert('Text copied to clipboard!');
+        }).catch(err => {
+            alert('Failed to copy text: ' + err);
+        });
+    });
+    shareButtons.messenger.addEventListener('click', () => shareToApp('https://www.messenger.com/t/?text='));
+    shareButtons.email.addEventListener('click', () => shareToApp('mailto:?subject=Note&body='));
+    shareButtons.sms.addEventListener('click', () => shareToApp('sms:?body='));
+    shareButtons.twitter.addEventListener('click', () => shareToApp('https://twitter.com/intent/tweet?text='));
+    shareButtons.telegram.addEventListener('click', () => shareToApp('https://t.me/share/url?url=&text='));
+    
     let db;
 
     // Initialize IndexedDB
@@ -160,5 +193,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.querySelector('.sidebar').classList.toggle('dark-theme');
         document.querySelector('.content').classList.toggle('dark-theme');
         document.querySelector('textarea').classList.toggle('dark-theme');
+        document.querySelector('.sidebar-right').classList.toggle('dark-theme'); // Fixed selector
     });
 });
