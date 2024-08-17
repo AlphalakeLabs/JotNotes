@@ -48,6 +48,16 @@
             <a href="#" id="deleteButtonMobile"><i class="fas fa-trash-alt"></i></a>
         </div>
     </div>
+    <script>
+        function redirectBasedOnScreenSize() {
+            if (window.innerWidth <= 768) { // Adjust the width as needed for mobile devices
+                window.location.href = 'indexmobile.html';
+            }
+        }
+
+        window.onload = redirectBasedOnScreenSize;
+        window.onresize = redirectBasedOnScreenSize; // Handle resizing
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
