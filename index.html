@@ -16,18 +16,6 @@
         <nav class="sidebar">
             <img src="logo.png" alt="Logo" class="logo">
             <ul class="list-unstyled components">
-                <li>
-                    <a href="#" id="clearButton"><i class="fas fa-eraser"></i> Clear Note</a>
-                </li>
-                <li>
-                    <a href="#" id="printButton"><i class="fas fa-print"></i> Print Note</a>
-                </li>
-                <li>
-                    <a href="#" id="downloadButton"><i class="fas fa-file-pdf"></i> Download as PDF</a>
-                </li>
-                <li>
-                    <a href="#" id="deleteButton"><i class="fas fa-trash-alt"></i> Delete Note</a>
-                </li>
                 <li><a href="#" id="clearButton"><i class="fas fa-eraser"></i> Clear Note</a></li>
                 <li><a href="#" id="printButton"><i class="fas fa-print"></i> Print Note</a></li>
                 <li><a href="#" id="downloadButton"><i class="fas fa-file-pdf"></i> Download as PDF</a></li>
@@ -35,7 +23,8 @@
             </ul>
             <div class="theme-toggle">
                 <a href="#" id="theme-toggle"><i class="fas fa-moon"></i></a>
-@@ -36,6 +28,19 @@
+            </div>
+        </nav>
         <div class="content">
             <textarea id="note" placeholder="Write your notes here..."></textarea>
         </div>
@@ -50,8 +39,16 @@
                 <li><a href="#" id="twitter"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="#" id="telegram"><i class="fab fa-telegram"></i></a></li>
             </ul>
-
+        
         </div>
         <div class="mobile-buttons">
             <a href="#" id="clearButtonMobile"><i class="fas fa-eraser"></i></a>
             <a href="#" id="printButtonMobile"><i class="fas fa-print"></i></a>
+            <a href="#" id="downloadButtonMobile"><i class="fas fa-file-pdf"></i></a>
+            <a href="#" id="deleteButtonMobile"><i class="fas fa-trash-alt"></i></a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
