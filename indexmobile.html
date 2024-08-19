@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="jYVCntj7-0JDeq_qrWMUZPdiAcXX_WLfIyFnq2BtAjY" />
-    <meta name="google-adsense-account" content="ca-pub-5332014025153879">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jot Page - A Simple Note-Taking App</title>
-    <meta name="description" content="Jot Page is a simple and user-friendly note-taking app that allows you to easily write, manage, and download your notes. Perfect for quick note-taking on the go.">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <style>
         html, body {
             height: 100%;
             margin: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
         }
 
         body {
@@ -21,7 +17,6 @@
             display: flex;
             flex-direction: column;
             background-color: #f5f5f5;
-            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .wrapper {
@@ -36,14 +31,11 @@
             padding: 5px;
             background-color: #007BFF;
             color: #fff;
-            transition: background-color 0.4s ease, color 0.4s ease;
-            box-sizing: border-box;
             font-size: calc(16px + 1vw);
         }
 
         .top-toolbar a, .bottom-toolbar a {
             color: #fff;
-            transition: color 0.4s ease;
             text-decoration: none;
         }
 
@@ -51,7 +43,6 @@
             flex: 1;
             padding: 10px;
             background-color: #fff;
-            box-sizing: border-box;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,11 +79,9 @@
             resize: none;
             font-size: calc(14px + 0.5vw);
             padding: 10px;
-            box-sizing: border-box;
             background-color: transparent;
             position: relative;
             z-index: 2;
-            transition: color 0.4s ease;
         }
 
         @media (min-width: 769px) {
@@ -113,15 +102,12 @@
                 padding: 20px;
                 background-color: #007BFF;
                 color: #fff;
-                box-sizing: border-box;
-                transition: background-color 0.4s ease, color 0.4s ease;
             }
 
             .sidebar a {
                 color: #fff;
                 text-decoration: none;
                 font-size: calc(16px + 0.5vw);
-                transition: color 0.4s ease;
             }
 
             .sidebar-right {
@@ -129,18 +115,14 @@
                 padding: 20px;
                 background-color: #333;
                 color: #fff;
-                box-sizing: border-box;
-                transition: background-color 0.4s ease, color 0.4s ease;
             }
 
             .sidebar-right a {
                 color: #fff;
                 font-size: calc(16px + 0.5vw);
-                transition: color 0.4s ease;
             }
         }
 
-        /* Dark mode styles */
         body.dark-mode {
             background-color: #121212;
             color: #e0e0e0;
@@ -228,14 +210,12 @@
             printWindow.document.write('<pre>' + text + '</pre>');
             printWindow.document.write('</body></html>');
             printWindow.document.close();
+            printWindow.focus();
             printWindow.print();
-            printWindow.onafterprint = function() {
-                printWindow.close();
-            };
         });
 
-        // Download Button - Download the content as a PDF
-        document.getElementById('downloadButton').addEventListener('click', function() {
+        // Download Button - Download the text as a PDF
+        document.getElementById('downloadButton').addEventListener('click', async function() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             const text = document.getElementById('note').value;
@@ -248,6 +228,49 @@
             if (confirm('Are you sure you want to delete all content?')) {
                 document.getElementById('note').value = '';
             }
+        });
+
+        // Share Buttons
+        document.getElementById('whatsapp').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        });
+
+        document.getElementById('reddit').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`https://www.reddit.com/submit?title=Check%20this&text=${text}`, '_blank');
+        });
+
+        document.getElementById('copy').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Text copied to clipboard!');
+            });
+        });
+
+        document.getElementById('messenger').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`fb-messenger://share?text=${text}`, '_blank');
+        });
+
+        document.getElementById('email').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`mailto:?subject=Note&body=${text}`, '_blank');
+        });
+
+        document.getElementById('sms').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`sms:?&body=${text}`, '_blank');
+        });
+
+        document.getElementById('twitter').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('telegram').addEventListener('click', function() {
+            const text = encodeURIComponent(document.getElementById('note').value);
+            window.open(`https://telegram.me/share/url?url=&text=${text}`, '_blank');
         });
     </script>
 </body>
