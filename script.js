@@ -1,16 +1,56 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    const note = document.getElementById('note');
-    const clearButton = document.getElementById('clearButton');
-    const printButton = document.getElementById('printButton');
-    const downloadButton = document.getElementById('downloadButton');
-    const deleteButton = document.getElementById('deleteButton');
-    const themeToggleButton = document.getElementById('theme-toggle');
+document.addEventListener('DOMContentLoaded', () => {
+    const { jsPDF } = window.jspdf;
+    const noteTextarea = document.getElementById('note');
 
-    // Mobile buttons
-    const clearButtonMobile = document.getElementById('clearButtonMobile');
-    const printButtonMobile = document.getElementById('printButtonMobile');
-    const downloadButtonMobile = document.getElementById('downloadButtonMobile');
-    const deleteButtonMobile = document.getElementById('deleteButtonMobile');
+    // Clear note
+    document.getElementById('clearButton').addEventListener('click', () => {
+        noteTextarea.value = '';
+    });
+    document.getElementById('clearButtonMobile').addEventListener('click', () => {
+        noteTextarea.value = '';
+    });
+
+    // Print note
+    document.getElementById('printButton').addEventListener('click', () => {
+        window.print();
+    });
+    document.getElementById('printButtonMobile').addEventListener('click', () => {
+        window.print();
+    });
+
+    // Download as PDF
+    document.getElementById('downloadButton').addEventListener('click', () => {
+        const doc = new jsPDF();
+        doc.text(noteTextarea.value, 10, 10);
+        doc.save('note.pdf');
+    });
+    document.getElementById('downloadButtonMobile').addEventListener('click', () => {
+        const doc = new jsPDF();
+        doc.text(noteTextarea.value, 10, 10);
+        doc.save('note.pdf');
+    });
+
+    // Delete note
+    document.getElementById('deleteButton').addEventListener('click', () => {
+        noteTextarea.value = '';
+    });
+    document.getElementById('deleteButtonMobile').addEventListener('click', () => {
+        noteTextarea.value = '';
+    });
+
+    // Redirect based on screen size
+    function redirectBasedOnScreenSize() {
+        if (window.innerWidth <= 768) {
+            window.location.href = 'indexmobile.html';
+        }
+    }
+
+    window.onload = redirectBasedOnScreenSize;
+    window.onresize = redirectBasedOnScreenSize; // Handle resizing
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const note = document.getElementById('note');
 
     const shareButtons = {
         whatsapp: document.getElementById('whatsapp'),
@@ -22,8 +62,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         twitter: document.getElementById('twitter'),
         telegram: document.getElementById('telegram')
     };
-    
-    const text = document.getElementById('text'); // Assuming there's an element with id 'note' that contains the text to be shared.
     
     function shareToApp(baseURL) {
         const text = encodeURIComponent(note.value.trim());
@@ -44,7 +82,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     shareButtons.sms.addEventListener('click', () => shareToApp('sms:?body='));
     shareButtons.twitter.addEventListener('click', () => shareToApp('https://twitter.com/intent/tweet?text='));
     shareButtons.telegram.addEventListener('click', () => shareToApp('https://t.me/share/url?url=&text='));
-    
+
     let db;
 
     // Initialize IndexedDB
@@ -106,93 +144,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         };
     }
 
-    // Load the saved note from localStorage or IndexedDB
-    if (localStorage.getItem('note')) {
-        note.value = localStorage.getItem('note');
-    } else if (db) {
-        loadNote();
-    }
-
-    // Auto-save the note to localStorage and IndexedDB as the user types
     note.addEventListener('input', () => {
-        const noteContent = note.value;
-        localStorage.setItem('note', noteContent);
-        if (db) {
-            saveNoteToIndexedDB(noteContent);
-        }
+        saveNoteToIndexedDB(note.value);
     });
 
-    // Clear the note and remove it from localStorage and IndexedDB
-    function clearNote() {
-        note.value = '';
-        localStorage.removeItem('note');
-        if (db) {
-            deleteNoteFromIndexedDB();
-        }
-        alert('Note cleared!');
-    }
-
-    clearButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        clearNote();
-    });
-
-    clearButtonMobile.addEventListener('click', (event) => {
-        event.preventDefault();
-        clearNote();
-    });
-
-    // Delete the note after confirmation
-    deleteButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        if (confirm('Are you sure you want to delete the note?')) {
-            clearNote();
-            alert('Note deleted!');
-        }
-    });
-
-    deleteButtonMobile.addEventListener('click', (event) => {
-        event.preventDefault();
-        if (confirm('Are you sure you want to delete the note?')) {
-            clearNote();
-            alert('Note deleted!');
-        }
-    });
-
-    // Print the note area only
-    printButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        window.print();
-    });
-
-    printButtonMobile.addEventListener('click', (event) => {
-        event.preventDefault();
-        window.print();
-    });
-
-    // Download the note as PDF
-    downloadButton.addEventListener('click', async (event) => {
-        event.preventDefault();
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text(note.value, 10, 10);
-        doc.save('note.pdf');
-    });
-
-    downloadButtonMobile.addEventListener('click', async (event) => {
-        event.preventDefault();
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text(note.value, 10, 10);
-        doc.save('note.pdf');
-    });
-
-    // Toggle dark theme
-    themeToggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-        document.querySelector('.sidebar').classList.toggle('dark-theme');
-        document.querySelector('.content').classList.toggle('dark-theme');
-        document.querySelector('textarea').classList.toggle('dark-theme');
-        document.querySelector('.sidebar-right').classList.toggle('dark-theme'); // Fixed selector
+    document.getElementById('deleteButton').addEventListener('click', () => {
+        deleteNoteFromIndexedDB();
     });
 });
