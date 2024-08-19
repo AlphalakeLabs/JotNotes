@@ -10,41 +10,61 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             background-color: #f5f5f5;
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .wrapper {
-            flex: 1;
             display: flex;
             flex-direction: column;
+            height: 100%;
+        }
+
+        .top-toolbar, .bottom-toolbar {
+            display: flex;
+            justify-content: space-around;
+            padding: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            box-sizing: border-box;
+            font-size: calc(16px + 1vw);
+        }
+
+        .top-toolbar a, .bottom-toolbar a {
+            color: #fff;
+            transition: color 0.4s ease;
+            text-decoration: none;
         }
 
         .content {
             flex: 1;
             padding: 10px;
             background-color: #fff;
-            transition: background-color 0.4s ease;
-            max-width: 100%;
             box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .textarea-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            width: 90%;
+            height: 80%;
             background-color: #fff;
             border: 2px solid #007BFF;
             border-radius: 5px;
-            transition: background-color 0.4s ease, border-color 0.4s ease;
-            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
         }
 
         .textarea-container::before {
@@ -53,8 +73,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 150px;
-            height: 170px;
+            width: 20%;
+            height: 25%;
             background: url('logo.png') no-repeat center center;
             background-size: contain;
             opacity: 0.4;
@@ -66,27 +86,12 @@
             height: 100%;
             border: none;
             resize: none;
-            font-size: 16px;
+            font-size: calc(14px + 0.5vw);
             padding: 10px;
             box-sizing: border-box;
             background-color: transparent;
             position: relative;
             z-index: 2;
-            transition: color 0.4s ease;
-        }
-
-        .top-toolbar, .bottom-toolbar {
-            display: flex;
-            justify-content: space-around;
-            padding: 10px;
-            background-color: #007BFF;
-            color: #fff;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        .top-toolbar a, .bottom-toolbar a {
-            color: #fff;
-            font-size: 18px;
             transition: color 0.4s ease;
         }
 
@@ -108,13 +113,14 @@
                 padding: 20px;
                 background-color: #007BFF;
                 color: #fff;
+                box-sizing: border-box;
                 transition: background-color 0.4s ease, color 0.4s ease;
             }
 
             .sidebar a {
                 color: #fff;
                 text-decoration: none;
-                font-size: 18px;
+                font-size: calc(16px + 0.5vw);
                 transition: color 0.4s ease;
             }
 
@@ -123,27 +129,14 @@
                 padding: 20px;
                 background-color: #333;
                 color: #fff;
+                box-sizing: border-box;
                 transition: background-color 0.4s ease, color 0.4s ease;
             }
 
             .sidebar-right a {
                 color: #fff;
-                font-size: 18px;
+                font-size: calc(16px + 0.5vw);
                 transition: color 0.4s ease;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .textarea-container {
-                border-width: 1px;
-            }
-
-            .top-toolbar a, .bottom-toolbar a {
-                font-size: 16px;
-            }
-
-            textarea {
-                font-size: 14px;
             }
         }
 
@@ -205,13 +198,13 @@
     <script>
         function resizeApp() {
             const container = document.querySelector('.textarea-container');
-            container.style.width = `${window.innerWidth}px`;
-            container.style.height = `${window.innerHeight}px`;
+            container.style.width = `${window.innerWidth * 0.9}px`;
+            container.style.height = `${window.innerHeight * 0.8}px`;
         }
-    
+
         window.addEventListener('resize', resizeApp);
         window.addEventListener('load', resizeApp);
-    
+
         // Dark Mode Toggle
         document.getElementById('darkModeToggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
@@ -219,12 +212,12 @@
             icon.classList.toggle('fa-moon');
             icon.classList.toggle('fa-sun');
         });
-    
+
         // Clear Button - Clear the text area
         document.getElementById('clearButton').addEventListener('click', function() {
             document.getElementById('note').value = '';
         });
-    
+
         // Print Button - Print only the content of the text area
         document.getElementById('printButton').addEventListener('click', function() {
             const text = document.getElementById('note').value;
@@ -240,7 +233,7 @@
                 printWindow.close();
             };
         });
-    
+
         // Download Button - Download the content as a PDF
         document.getElementById('downloadButton').addEventListener('click', function() {
             const { jsPDF } = window.jspdf;
@@ -249,68 +242,13 @@
             doc.text(text, 10, 10);
             doc.save('note.pdf');
         });
-    
-        // Delete Button - Delete the text area content
+
+        // Delete Button - Confirm and delete the text area content
         document.getElementById('deleteButton').addEventListener('click', function() {
-            document.getElementById('note').value = '';
-        });
-    
-        // Copy Button - Copy the text area content to clipboard
-        document.getElementById('copy').addEventListener('click', function() {
-            const textarea = document.getElementById('note');
-            textarea.select();
-            document.execCommand('copy');
-        });
-    
-        // WhatsApp sharing
-        document.getElementById('whatsapp').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(noteText)}`;
-            window.open(whatsappUrl, '_blank');
-        });
-    
-        // Reddit sharing
-        document.getElementById('reddit').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const redditUrl = `https://www.reddit.com/submit?title=Note&text=${encodeURIComponent(noteText)}`;
-            window.open(redditUrl, '_blank');
-        });
-    
-        // Messenger sharing
-        document.getElementById('messenger').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const messengerUrl = `fb-messenger://share/?text=${encodeURIComponent(noteText)}`;
-            window.open(messengerUrl, '_blank');
-        });
-    
-        // Email sharing
-        document.getElementById('email').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const emailUrl = `mailto:?subject=Note&body=${encodeURIComponent(noteText)}`;
-            window.open(emailUrl, '_blank');
-        });
-    
-        // SMS sharing
-        document.getElementById('sms').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const smsUrl = `sms:?body=${encodeURIComponent(noteText)}`;
-            window.open(smsUrl, '_blank');
-        });
-    
-        // Twitter sharing
-        document.getElementById('twitter').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(noteText)}`;
-            window.open(twitterUrl, '_blank');
-        });
-    
-        // Telegram sharing
-        document.getElementById('telegram').addEventListener('click', function() {
-            const noteText = document.getElementById('note').value;
-            const telegramUrl = `https://t.me/share/url?text=${encodeURIComponent(noteText)}`;
-            window.open(telegramUrl, '_blank');
+            if (confirm('Are you sure you want to delete all content?')) {
+                document.getElementById('note').value = '';
+            }
         });
     </script>
-    
 </body>
 </html>
