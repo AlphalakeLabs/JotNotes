@@ -151,4 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('deleteButton').addEventListener('click', () => {
         deleteNoteFromIndexedDB();
     });
+
+    const themeToggleButton = document.getElementById('theme-toggle'); // Define themeToggleButton
+    themeToggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        document.querySelector('.sidebar').classList.toggle('dark-theme');
+        document.querySelector('.content').classList.toggle('dark-theme');
+        document.querySelector('textarea').classList.toggle('dark-theme');
+        document.querySelector('.sidebar-right').classList.toggle('dark-theme'); // Fixed selector
+    });
 });
