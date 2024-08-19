@@ -187,20 +187,106 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script>
+        // Dark Mode Toggle
         document.getElementById('darkModeToggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
-            
-            const isDarkMode = document.body.classList.contains('dark-mode');
             const icon = this.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        });
 
-            if (isDarkMode) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
+        // Clear Button - Clear the text area
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('note').value = '';
+        });
+
+        // Print Button - Print only the content of the text area
+        document.getElementById('printButton').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const printWindow = window.open('', '', 'height=400,width=600');
+            printWindow.document.write('<html><head><title>Print Note</title>');
+            printWindow.document.write('<style>body{font-family: Arial, sans-serif; padding: 20px;}</style>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write('<pre>' + text + '</pre>');
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+            printWindow.onafterprint = function() {
+                printWindow.close();
+            };
+        });
+
+        // Download Button - Download the content as a PDF
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const text = document.getElementById('note').value;
+            doc.text(text, 10, 10);
+            doc.save('note.pdf');
+        });
+
+        // Delete Button - Delete the text area content
+        document.getElementById('deleteButton').addEventListener('click', function() {
+            document.getElementById('note').value = '';
+        });
+
+        // Copy Button - Copy the content of the text area
+        document.getElementById('copy').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Text copied to clipboard');
+            });
+        });
+
+        // Share via WhatsApp
+        document.getElementById('whatsapp').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        // Share via Reddit
+        document.getElementById('reddit').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `https://www.reddit.com/submit?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        // Share via Facebook Messenger
+        document.getElementById('messenger').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `fb-messenger://share?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        // Share via Email
+        document.getElementById('email').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `mailto:?body=${encodeURIComponent(text)}`;
+            window.location.href = url;
+        });
+
+        // Share via SMS
+        document.getElementById('sms').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `sms:?body=${encodeURIComponent(text)}`;
+            window.location.href = url;
+        });
+
+        // Share via Twitter
+        document.getElementById('twitter').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        // Share via Telegram
+        document.getElementById('telegram').addEventListener('click', function() {
+            const text = document.getElementById('note').value;
+            const url = `https://telegram.me/share/url?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
         });
     </script>
+    
 </body>
 </html>
