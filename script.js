@@ -42,12 +42,53 @@ document.addEventListener('DOMContentLoaded', () => {
         const pageButton = document.createElement('button');
         pageButton.classList.add('page-button');
         pageButton.textContent = pageTitle;
+        pageButton.draggable = true; // **Newly added: Make the page buttons draggable**
+
+        // **Newly added: Add dragstart event listener**
+        pageButton.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', pageTitle);
+            e.target.classList.add('dragging');
+        });
+
+        // **Newly added: Add dragend event listener**
+        pageButton.addEventListener('dragend', (e) => {
+            e.target.classList.remove('dragging');
+        });
+
         pageButton.addEventListener('click', () => {
             saveCurrentNote(); // Save the current note before switching
             loadNoteFromMemory(pageTitle);
             showTextarea();  // Show the textarea when a note is selected
         });
+
         pagesContainer.appendChild(pageButton);
+    }
+
+    // **Newly added: Handle dragover event and reorder the page buttons**
+    pagesContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(pagesContainer, e.clientY);
+        const draggingElement = document.querySelector('.dragging');
+        if (afterElement == null) {
+            pagesContainer.appendChild(draggingElement);
+        } else {
+            pagesContainer.insertBefore(draggingElement, afterElement);
+        }
+    });
+
+    // **Newly added: Determine the element to insert the dragged element after**
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.page-button:not(.dragging)')];
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
     }
 
     addPageButton.addEventListener('click', () => {
