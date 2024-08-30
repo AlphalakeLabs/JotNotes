@@ -15,7 +15,7 @@ body {
 }
 
 body.dark-theme {
-    background-color: #333;
+    background-color: #222;
     color: #fff;
 }
 
@@ -244,7 +244,7 @@ textarea:focus {
 .sidebar-right {
     position: fixed;
     bottom: 0; /* Aligns the sidebar to the bottom */
-    left: 50%; /* Center horizontally */
+    left: 45%; /* Center horizontally */
     transform: translateX(-30%); /* Adjust for horizontal centering */
     width: 470px; /* Set width to desired size */
     height: 40px; /* Set height to desired size */
@@ -304,3 +304,102 @@ textarea:focus {
     }
 }
 
+/* Add New Page Button Styles */
+#addPageButton {
+    background-color: #007BFF; /* Gold */
+    color: #fff; /* White Text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 0px solid #333; /* Dark Border */
+    margin-bottom: 20px;
+    font-size: 15px; /* Increased Font Size */
+}
+
+#addPageButton.dark-theme {
+    background-color: #333; /* Dark Background */
+    color: #ddd; /* Light Text */
+    border: 0px solid #555; /* Slightly lighter Dark Border */
+}
+
+.sidebar2 {
+    background-color: #007BFF; /* Electric Blue */
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 100vh;
+    color: #FFFFFF; /* White */
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s;
+}
+
+.sidebar2.dark-theme {
+    background-color: #222;
+    color: #ddd;
+}
+
+
+#addPageButton:hover {
+    background-color: #0056b3; /* Darker Gold */
+}
+
+#addPageButton.dark-theme:hover {
+    background-color: #444; /* Darker shade for hover in dark theme */
+    color: #fff; /* Ensure text stays readable */
+}
+
+/* Pages Container Styles */
+#pagesContainer {
+    flex-grow: 1;
+    background-color: #007BFF; /* Light Gray Background */
+    padding: 10px;
+    overflow-y: auto;
+    list-style-type: none; /* Remove bullet points */
+    border: 0px solid #000000; /* Light Gray Border */
+    border-radius: 10px;
+}
+
+#pagesContainer.dark-theme {
+    background-color: #333; /* Dark Background */
+    color: #ddd; /* Light Text (if needed) */
+}
+
+
+.page-button {
+    background-color: #007BFF; /* Blue Background */
+    color: #FFFFFF; /* White Text */
+    padding: 10px;
+    margin-bottom: 5px; /* Space between buttons */
+    border-radius: 5px;
+    text-align: left;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    display: block; /* Full-width buttons */
+    font-size: 15px
+}
+
+.page-button.dark-theme {
+    background-color: #333; /* Dark Background */
+    color: #ddd; /* Light Text (if needed) */
+}
+
+.page-button:hover {
+    background-color: #0056b3; /* Slightly darker shade of blue */
+}
+
+.page-button.dark-theme:hover {
+    background-color: #444; /* Darker shade for hover in dark theme */
+    color: #fff; /* Ensure text stays readable */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Optionally, add other styles for when the textarea is visible */
+.visible {
+    display: block;
+}
