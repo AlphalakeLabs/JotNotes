@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #F7F7F7; /* Light Gray */
     display: flex;
     height: 100vh;
