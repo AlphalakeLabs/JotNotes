@@ -223,16 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Redirect based on screen size
-    function checkScreenSize() {
-        if (window.innerWidth < 768) {
-            window.location.href = 'mobile.html';
-        }
-    }
-    
-    window.addEventListener('resize', checkScreenSize);
-    checkScreenSize();
-
     const shareButtons = {
         whatsapp: document.getElementById('whatsapp'),
         reddit: document.getElementById('reddit'),
@@ -263,4 +253,27 @@ document.addEventListener('DOMContentLoaded', () => {
     shareButtons.sms.addEventListener('click', () => shareToApp('sms:?body='));
     shareButtons.twitter.addEventListener('click', () => shareToApp('https://twitter.com/intent/tweet?text='));
     shareButtons.telegram.addEventListener('click', () => shareToApp('https://t.me/share/url?url=&text='));
+
+    const introMessage = document.getElementById('introMessage');
+    const note = document.getElementById('note');
+
+    function showTextarea() {
+        introMessage.classList.add('hidden');
+        noteTextarea.classList.remove('hidden');
+        noteTextarea.classList.add('visible');
+    }
+
+    function hideTextarea() {
+        noteTextarea.classList.remove('visible');
+        noteTextarea.classList.add('hidden');
+    }
+
+    // Function calls and event listeners
+    document.querySelectorAll('.page-button').forEach(button => {
+        button.addEventListener('click', showTextarea);
+    });
+
+    // Initialize pages and textarea
+    loadPages();
+
 });
