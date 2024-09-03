@@ -403,3 +403,32 @@ textarea:focus {
 .visible {
     display: block;
 }
+
+.intro-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(58, 58, 58, 0.686);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    display: block;
+    text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Black border effect */
+}
+
+.hidden {
+    display: none;
+}
+.visible {
+    display: block;
+}
+
+.version-info {
+    font-size: 1em; /* Smaller font size */
+    color: #ffffff; /* Light gray color for subtlety */
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Add some spacing above it */
+    padding-top: 10px; /* Padding for spacing between text and border */
+}
