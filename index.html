@@ -39,12 +39,29 @@
             </div>
         </nav>
         <div class="content">
+            <div id="introMessage" class="intro-message">
+                Welcome! Use the app to quickly write, manage, and share your notes.<br>
+                <br>
+                Secure, fast, and easy multi-page note-taking. Download as PDF, print, and share to social media—no login needed. Includes privacy settings, spellchecker, and autosave.<br>
+                <br>
+                Click "+ Add New Page" to start writing notes.<br>
+                <br>
+                <li>Use the text area to type your notes.</li>
+                <li>Manage notes: Clear, Print, Download as PDF, or Delete.</li>
+                <li>Toggle light/dark mode with the moon icon.</li>
+                <li>Share via WhatsApp, Reddit, Twitter, and more using the icons.</li>
+            </div>
+            
             <textarea id="note" class="hidden" placeholder="Write your notes here..."></textarea>
         </div>
         <div class="sidebar2">
             <button id="addPageButton" class="add-page-button">+ Add New Page</button>
             <div id="pagesContainer" class="pages-container">
+
                 <!-- Page buttons will be added here -->     
+            </div>
+            <div class="version-info">
+                Version 3.1.2
             </div>
         </div>        
         <div class="sidebar-right">
@@ -67,5 +84,14 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YourAppName",
+      "description": "Secure online notepad with features like PDF export, privacy settings, and more.",
+      "url": "https://www.yourappname.com/"
+    }
+    </script>
 </body>
 </html>
