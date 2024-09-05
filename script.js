@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+     if (window.innerWidth <= 600) {
+        window.location.href = 'mobile.html';
+        return; // Exit to prevent further execution of the script
+    }
+    
     let notesData = JSON.parse(localStorage.getItem('notesData')) || {};  // Load notes from localStorage or initialize an empty object
     let currentPageTitle = null;  // Track the current page
 
